@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
-
+import dbConfig from './setting/dbConfig'
 import routes from './routes'
 
 class App {
@@ -23,9 +23,17 @@ class App {
     }
 
     private database (): void{
-      mongoose.connect('mongodb://localhost:27017/testeY', {
+      mongoose.Promise = global.Promise
+      mongoose.connect(dbConfig.url, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        user: dbConfig.user,
+        pass: dbConfig.pwd
+      }).then(() => {
+        console.log('successfully connected to the database')
+      }).catch(error => {
+        console.log('error connecting to the database' + error)
+        process.exit()
       })
     }
 

@@ -83,6 +83,10 @@ class ChannelController {
     return res.json(Channels)
   }
 
+  public async ping (req: Request, res: Response): Promise<Response> {
+    return res.json('Pong')
+  }
+
   /**
    * create
    */
