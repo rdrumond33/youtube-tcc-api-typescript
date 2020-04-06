@@ -1,7 +1,7 @@
 const dbConfig = {
-  url: 'mongodb://0.0.0.0:27017/teste',
-  user: '',
-  pwd: ''
+  url: 'mongodb://localhost:27017/teste',
+  user: 'root',
+  pwd: 'root'
 }
 
 export default dbConfig

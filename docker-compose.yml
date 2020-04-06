@@ -1,19 +1,20 @@
-version: '3'
+version: '3.7'
 services:
   api:
     container_name: tcc-api
     restart: always
     depends_on: 
-        - mongodb
+        - mongo
     build: ./
+    env_file: 
+      - ".env/"
     ports:
         - "3333:3333"
     links:
-        - mongodb
-  mongodb:
+        - mongo
+  mongo:
     container_name: mongo
     image: "mongo"
     restart: always
     ports:
         - "27017:27017"
-    
