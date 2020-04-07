@@ -3,11 +3,6 @@ import Channel from '../schemas/Channel'
 import { getIds, normalizeData } from '../setting/youtube'
 class ChannelController {
   public async index (req: Request, res: Response, next: NextFunction): Promise<Response> {
-    const { username, password } = req.body
-    if (!(username && password)) {
-      res.status(400).send()
-    }
-
     const Channels = await Channel.find()
     return res.json(Channels)
   }
