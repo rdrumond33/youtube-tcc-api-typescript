@@ -61,14 +61,15 @@ async function getIds(country: string): Promise<Array<any>> {
   return responseData
 }
 
-async function normalizeData(data, country: string): Promise<any> {
+async function normalizeData (data, country: string): Promise<any> {
   const channels = {
     ids: [],
     country: country,
     timestamp: Date.now().toLocaleString('BR')
   }
+
   await data.map(playlist => {
-    return playlist.items.map(video => {
+    playlist.items.map(video => {
       channels.ids.push(video.id)
       Channel.findOne({ idVideo: video.id }).exec((_, res) => {
         if (res == null) {
@@ -81,11 +82,10 @@ async function normalizeData(data, country: string): Promise<any> {
             publishedAt: video.snippet.publishedAt
           })
         }
-        return channels
       })
     })
   })
-  console.log(channels.ids)
+
   return channels
 }
 
