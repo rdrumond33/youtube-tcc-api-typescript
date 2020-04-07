@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express'
+import { Request, Response } from 'express'
 import Channel from '../schemas/Channel'
 import { getIds, normalizeData } from '../setting/youtube'
 class ChannelController {
-  public async index (req: Request, res: Response, next: NextFunction): Promise<Response> {
+  public async index (req: Request, res: Response): Promise<Response> {
     const Channels = await Channel.find()
     return res.json(Channels)
   }
