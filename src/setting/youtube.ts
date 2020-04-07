@@ -25,7 +25,7 @@ async function getIds(country: string): Promise<Array<any>> {
 
   let response;
   for (let i = 1; i < totalResults / resultsPerPage; i++) {
-    if (i == 1) {
+    if (i === 1) {
       response = await axios({
         method: 'get',
         url: '/videos',
@@ -71,7 +71,7 @@ async function normalizeData (data, country: string): Promise<any> {
   await data.map(playlist => {
     playlist.items.map(video => {
       channels.ids.push(video.id)
-      Channel.findOne({ idVideo: video.id }).exec((_, res) => {
+      Channel.findOne({ idVideo: video.id, country: country}).exec((_, res) => {
         if (res == null) {
           Channel.create({
             idVideo: video.id,
