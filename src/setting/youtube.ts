@@ -1,9 +1,8 @@
 import axios from 'axios'
 import Channel from '../schemas/Channel'
 
-async function getIds(country: string): Promise<Array<any>> {
+async function getIds (country: string): Promise<Array<any>> {
   const responseData = []
-
 
   const responseAxios = await axios({
     method: 'get',
@@ -23,7 +22,7 @@ async function getIds(country: string): Promise<Array<any>> {
 
   responseData.push(responseAxios.data)
 
-  let response;
+  let response
   for (let i = 1; i < totalResults / resultsPerPage; i++) {
     if (i === 1) {
       response = await axios({
@@ -40,7 +39,6 @@ async function getIds(country: string): Promise<Array<any>> {
         }
       })
       responseData.push(response.data)
-
     } else {
       response = await axios({
         method: 'get',
@@ -71,7 +69,7 @@ async function normalizeData (data, country: string): Promise<any> {
   await data.map(playlist => {
     playlist.items.map(video => {
       channels.ids.push(video.id)
-      Channel.findOne({ idVideo: video.id, country: country}).exec((_, res) => {
+      Channel.findOne({ idVideo: video.id, country: country }).exec((_, res) => {
         if (res == null) {
           Channel.create({
             idVideo: video.id,

@@ -9,7 +9,13 @@ services:
     env_file: 
       - ".env/"
     environment:
-      - PORT=3333    
+      - PORT=3333
+      - PRODUCTION=false
+      - MONGONAME=youtubeIds
+      - BASEAUTHUSERNAME=Rodrigo
+      - BASEAUTHPASSWORD=12345
+      - COUNTYS=ie,us,ca,br,hr
+      - CRONTAB=* * * * *
     ports:
         - "3333:3333"
   mongo:
