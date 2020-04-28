@@ -32,7 +32,7 @@ async function normalizeData (videos: Array<any>, country: string): any {
   return channels
 }
 
-export default async function getIds (country: string) {
+export default async function getIds (country: string): any {
   const responseData = []
 
   const responseAxios = await axios({

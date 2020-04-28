@@ -1,4 +1,4 @@
-FROM node:lts-stretch-slim
+FROM node:lts
 
 WORKDIR /app
 
@@ -7,6 +7,6 @@ COPY yarn.lock yarn.lock
 RUN yarn install
 
 COPY . .
-RUN yarn build
+RUN make build
 
-CMD [ "yarn","start" ]
+CMD [ "make","run-dev" ]
