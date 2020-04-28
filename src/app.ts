@@ -4,6 +4,8 @@ import morgan from 'morgan'
 import mongoose from 'mongoose'
 import routes from './routes'
 import helmet from 'helmet'
+import './lib/env'
+
 class App {
   public app: express.Application
 
@@ -23,9 +25,9 @@ class App {
   }
 
   private database (): void {
-    if (process.env.PRODUCTION === 'false') {
+    if (process.env.PRODUCTION === 'dev') {
       console.log('Modo[dev]')
-      mongoose.connect(`mongodb://mongo:27017/${process.env.MONGONAME}`, {
+      mongoose.connect(`mongodb://localhost:27017/${process.env.MONGONAME}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(() => {

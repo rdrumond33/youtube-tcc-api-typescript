@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import Channel from '../schemas/Channel'
-import { getIds, normalizeData } from '../setting/youtube'
+import getIds from '../setting/youtube'
 class ChannelController {
   public async index (req: Request, res: Response): Promise<Response> {
     const Channels = await Channel.find()
@@ -15,8 +15,7 @@ class ChannelController {
     const country = req.params.country.toUpperCase()
 
     const data = await getIds(country)
-    const dataNormalize = await normalizeData(data, country)
-    return res.json(dataNormalize)
+    return res.json(data)
   }
 
   public async show (req: Request, res: Response): Promise<Response> {

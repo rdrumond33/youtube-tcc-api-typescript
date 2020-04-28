@@ -5,9 +5,9 @@
   "author": "Rodrigo Drumond de Paula <rodrigodru33@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.ts",
-    "build": "sucrase ./src -d ./dist --transforms typescript,imports",
-    "start": "node ./dist/server.js"
+    "start:dev": "nodemon src/server.ts",
+    "start": "node ./dist/server.js",
+    "build": "sucrase ./src -d ./dist --transforms typescript,imports"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",

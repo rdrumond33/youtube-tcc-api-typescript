@@ -3,6 +3,6 @@
     "watch":["src"],
     "ext":"ts",
     "execMap":{
-        "ts":"sucrase-node src/server.ts"
+        "ts":"node --inspect -r sucrase/register src/server.ts"
     }
 }
