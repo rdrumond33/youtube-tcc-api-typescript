@@ -38,6 +38,49 @@ class ChannelController {
 
     return res.json({ count })
   }
-}
 
+  public async orderDay (req: Request, res: Response): Promise<Response> {
+    const result = await Channel.find({
+      createdAt: {
+        $lt: new Date(),
+        $gte: new Date(new Date().setDate(new Date().getDate() - 1))
+      }
+    })
+    if (result.length === 0) {
+      return res.json({ result: 'Nao tem dado para esse dia' })
+    }
+
+    const resultOrder = result.sort((a, b): number => {
+      if (parseInt(a.viewCount) < parseInt(b.viewCount)) return 1
+      if (parseInt(b.viewCount) < parseInt(a.viewCount)) return -1
+      return 0
+    })
+
+    return res.json({ resultOrder })
+  }
+
+  public async orderDayPerContry (req: Request, res: Response): Promise<Response> {
+    const country = req.params.country.toUpperCase()
+
+    const result = await Channel.find({
+      country: country,
+      createdAt: {
+        $lt: new Date(),
+        $gte: new Date(new Date().setDate(new Date().getDate() - 1))
+      }
+    })
+
+    if (result.length === 0) {
+      return res.json({ result: 'Nao tem dado para esse dia' })
+    }
+
+    const resultOrder = result.sort((a, b): number => {
+      if (parseInt(a.viewCount) < parseInt(b.viewCount)) return 1
+      if (parseInt(b.viewCount) < parseInt(a.viewCount)) return -1
+      return 0
+    })
+
+    return res.json({ resultOrder })
+  }
+}
 export default new ChannelController()

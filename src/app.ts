@@ -31,7 +31,7 @@ class App {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(() => {
-        console.log('successfully connected to the database')
+        console.log('successfully connected to the database dev')
       }).catch(error => {
         console.log('error connecting to the database' + error)
         process.exit()
@@ -42,7 +42,7 @@ class App {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(() => {
-        console.log('successfully connected to the database')
+        console.log('successfully connected to the database production')
       }).catch(error => {
         console.log('error connecting to the database' + error)
         process.exit()
