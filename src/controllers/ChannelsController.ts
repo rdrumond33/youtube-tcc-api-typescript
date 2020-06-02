@@ -82,5 +82,25 @@ class ChannelController {
 
     return res.json({ resultOrder })
   }
+  
+  public async datePerContry(req: Request, res: Response): Promise<Response> {
+    const date = moment.tz(`${req.params.date} 00:00`, "America/Sao_Paulo");
+   
+    const result = await Channel.aggregate([
+      {
+        $match: {
+          createdAt: { $gte: new Date(date.utc().format()), $lt: new Date(date.add(1, "days").utc().format()) },
+        },
+      },
+      {
+        $group: {
+          _id: "$country",
+          videos_id: { $push: "$idVideo" },
+        },
+      },
+    ]);
+
+    return res.json({ result });
+  }
 }
 export default new ChannelController()

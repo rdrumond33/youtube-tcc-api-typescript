@@ -27,7 +27,7 @@ class App {
   private database (): void {
     if (process.env.PRODUCTION === 'dev') {
       console.log('Modo[dev]')
-      mongoose.connect(`mongodb://localhost:27017/${process.env.MONGONAME}`, {
+      mongoose.connect(`mongodb://mongo:27017/${process.env.MONGONAME}`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
       }).then(() => {

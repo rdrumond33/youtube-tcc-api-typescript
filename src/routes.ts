@@ -9,5 +9,6 @@ routes.get('/tcc/channels/:country', ChannelsController.create)
 routes.get('/tcc/channels/search/:country', ChannelsController.show)
 routes.get('/tcc/videos/desc', ChannelsController.orderDay)
 routes.get('/tcc/videos/desc/:country', ChannelsController.orderDayPerContry)
+routes.get('/tcc/videos/date/:date', ChannelsController.datePerContry)
 
 export default routes
