@@ -97,7 +97,7 @@ class ChannelController {
 
   public async datePerContry (req: Request, res: Response): Promise<Response> {
     const date = moment.tz(`${req.params.date} 00:00`, 'America/Sao_Paulo')
-
+    const limit = parseInt(req.query.limit) === 0 ? 30 : parseInt(req.query.limit)
     const result = await Channel.aggregate([
       {
         $addFields: {
@@ -130,7 +130,7 @@ class ChannelController {
         }
       },
       {
-        $limit: 10
+        $limit: limit
       },
       {
         $sort: { viewCountInt: -1 }
