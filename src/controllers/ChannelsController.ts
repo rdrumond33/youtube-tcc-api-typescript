@@ -102,7 +102,7 @@ class ChannelController {
         $match: {
           createdAt: {
             $gte: new Date(date.utc().format()),
-            $lt: new Date(date.add(1, 'hours').utc().format())
+            $lt: new Date(date.add(2, 'hours').utc().format())
           }
         }
       },
