@@ -96,13 +96,13 @@ class ChannelController {
   }
 
   public async datePerContry (req: Request, res: Response): Promise<Response> {
-    const date = moment.tz(`${req.params.date} 00:00`, 'America/Sao_Paulo')
+    const date = moment.tz(`${req.params.date} 11:00`, 'America/Sao_Paulo')
     const result = await Channel.aggregate([
       {
         $match: {
           createdAt: {
             $gte: new Date(date.utc().format()),
-            $lt: new Date(date.add(1, 'days').utc().format())
+            $lt: new Date(date.add(1, 'hours').utc().format())
           }
         }
       },
