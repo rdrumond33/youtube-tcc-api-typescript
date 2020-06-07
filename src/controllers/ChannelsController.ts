@@ -119,7 +119,7 @@ class ChannelController {
       {
         $group: {
           _id: "$country",
-          video: {
+          videos: {
             $push: {
               idVideo: "$idVideo",
               country: "$country",
